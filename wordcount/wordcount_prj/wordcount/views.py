@@ -19,4 +19,32 @@ def result(request):
         else:
             word_dictionary[word]=1
 
-    return render(request, 'result.html', {'alltext': entered_text, 'dictionary': word_dictionary.items()})
+    word_count = len(word_list)
+
+    max_count = 0
+    max_words = []
+
+    for word, count in word_dictionary.items():
+        if count > max_count:
+            max_count = count
+            max_words = [word]
+        elif count == max_count:
+            max_words.append(word)
+
+    total_length = len(entered_text)
+    no_space_length = len(entered_text.replace(" ", ""))
+
+    return render(request, 'result.html', {
+        'alltext': entered_text,
+        'dictionary': word_dictionary.items(),
+        'word_count': word_count,
+        'max_words': max_words,
+        'max_count': max_count,
+        'total_length': total_length,
+        'no_space_length': no_space_length
+    })
+
+
+def hello(request):
+    name = request.GET['name']
+    return render(request, 'hello.html', {'name': name})
