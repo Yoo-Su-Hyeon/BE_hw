@@ -5,17 +5,6 @@ import random
 def index(request):
     return render(request, 'index.html')
 
-def error1(request):
-    return render(request, 'error1.html')
-
-def error2(request):
-    return render(request, 'error2.html')
-
-def error3(request):
-    return render(request, 'error3.html')
-
-def result(request):
-    return render(request, 'result.html')
 
 def password_generator(request):
     length = request.GET.get('length', '').strip()
