@@ -7,7 +7,7 @@ def list(request):
     return render(request,'list.html',{'posts':posts})
 
 
-def result(request, ):
+def result(request ):
     keyword=request.GET.get('keyword','').strip()
     posts= Post.objects.filter(Q(title__icontains=keyword) | Q(content__icontains=keyword)).order_by('-created_at')
     

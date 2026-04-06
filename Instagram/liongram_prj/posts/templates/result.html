@@ -6,12 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    {% if posts %}
-        <h2>"{{ keyword }}" - 검색 결과</h2>
-    {% else %}
-        <h2>"없는내용" - 검색 결과</h2>
-    {% endif %}
-
+    <h2>"{{ keyword }}" - 검색 결과</h2>
     {% for post in posts %}
         <a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a>
         <p>{{ post.content }}</p>
