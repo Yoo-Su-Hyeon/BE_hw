@@ -52,6 +52,6 @@ def update(request,id):
         phone.email=request.POST.get('email')
         phone.save()
 
-        return redirect('phone:list')
+        return redirect('phone:detail', id)
 
     return render(request, 'update.html', {'phone':phone})
