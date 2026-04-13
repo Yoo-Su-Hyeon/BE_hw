@@ -9,23 +9,23 @@ from django.contrib.auth.decorators import login_required
 def signup(request):
     if request.method == 'GET':
         form = SignupForm()
-        return render(request, 'signup.html', {'form': form})
+        return render(request, 'accounts/signup.html', {'form': form})
     
     form = SignupForm(request.POST)
     if form.is_valid():
         form.save()
-        return redirect('posts:main')
+        return redirect('accounts:login')
     else:
-        return render(request, 'signup.html', {'form':form})
+        return render(request, 'accounts/signup.html', {'form':form})
     
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html',{'form': AuthenticationForm()})
+        return render(request, 'accounts/login.html',{'form': AuthenticationForm()})
     form =AuthenticationForm(request, request.POST)
     if form.is_valid():
         auth_login(request, form.user_cache)
         return redirect('posts:main')
-    return render(request, 'login.html',{'form':form})
+    return render(request, 'accounts/login.html',{'form':form})
 
 def logout(request):
     if request.user.is_authenticated:
@@ -34,7 +34,7 @@ def logout(request):
 
 @login_required
 def mypage(request):
-    return render(request, 'mypage.html')
+    return render(request, 'accounts/mypage.html')
 
 def user_info(request):
-    return render(request, 'user_info.html')
+    return render(request, 'accounts/user_info.html')
