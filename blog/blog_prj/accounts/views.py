@@ -3,6 +3,7 @@ from .forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from blog.models import Post
 
 def signup(request):
     if request.method =='GET':
@@ -39,5 +40,5 @@ def user_info(request):
 
 
 def myblog(request):
-    posts = request.user.posts.all().order_by('-id')
+    posts = Post.objects.filter(author=request.user).order_by('-id')
     return render(request, 'accounts/myblog.html', {'posts' : posts})
