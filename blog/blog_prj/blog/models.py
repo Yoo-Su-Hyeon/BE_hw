@@ -25,7 +25,7 @@ class Post(models.Model):
     category = models.ManyToManyField(to=Category, through = "PostCategory", related_name = "posts")
     like = models.ManyToManyField(to=User, through="Like", related_name="like_posts")
     
-    def __str__(self):
+    def __str__(self): 
         return f'[{self.id}] self.title'
 
 class Like(models.Model):

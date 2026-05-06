@@ -10,7 +10,8 @@ def list(request):
 
     if category_id:
         category = get_object_or_404(Category, id = category_id)
-        posts = category.posts.all().order_by('-id')
+        posts = Post.objects.filter(category=category).order_by('-id')    
+        
     else:
         posts=Post.objects.all().order_by('-id')
 
@@ -92,7 +93,7 @@ def like(request,post_id):
     post = get_object_or_404(Post, id=post_id)
     user = request.user
 
-    if user in post.like.all():
+    if post in user.like_posts.all():
         post.like.remove(user)
     else:
         post.like.add(user)
